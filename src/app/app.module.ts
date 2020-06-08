@@ -6,11 +6,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { environment } from 'src/environments/environment'
 import { AppComponent } from './app.component'
 import { FormsModule } from '@angular/forms'
-
 // RUTAS
 
 import { APP_ROUTING } from './app.routes'
-import { IndexComponent } from './components/public/index/index.component'
+import { IndexComponent } from './components/public/index/index.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultModule } from './components/company/layouts/default/default.module';
+
 
 @NgModule({
   declarations: [AppComponent, IndexComponent],
@@ -21,8 +23,10 @@ import { IndexComponent } from './components/public/index/index.component'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule,
+    BrowserAnimationsModule,
+    DefaultModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
