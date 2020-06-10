@@ -11,6 +11,7 @@ export class AuthService {
   user: User;
   async login(email: string, password: string) {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
+
     this.router.navigate(['company']);
   }
   async register(email: string, password: string) {
@@ -19,6 +20,7 @@ export class AuthService {
   }
   async sendEmailVerification() {
     await (await this.afAuth.currentUser).sendEmailVerification()
+      ;
     this.router.navigate(['index']);
   }
   async sendPasswordResetEmail(passwordResetEmail: string) {
@@ -29,6 +31,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['index']);
   }
+
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
@@ -37,7 +40,8 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        localStorage.setItem('user', JSON.stringify(this.user.email));
+        console.log('Datos ', localStorage.getItem('user'))
       } else {
         localStorage.setItem('user', null);
       }

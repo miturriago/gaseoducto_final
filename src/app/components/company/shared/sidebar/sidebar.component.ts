@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Empresa } from '../../../../models/empresa/empresa';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  email: string
+  constructor(
+    private firestore: AngularFirestore
+  ) {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+
+    this.getCompany();
+    this.email = localStorage.getItem('user');
+
   }
+  getCompany() {
+    console.log("paso aca")
+    console.log(this.firestore.collection('empresas').snapshotChanges());
+  }
+  
+
 
 }

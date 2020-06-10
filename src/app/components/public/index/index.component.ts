@@ -21,20 +21,19 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
-  addEmpresa(empresaForm: NgForm) {
-    this.registerService.addEmpresa(empresaForm.value)
+   addEmpresa(empresaForm: NgForm) {
     this.authService.register(this.empresa.email, this.empresa.password)
+    this.registerService.addEmpresa(empresaForm.value)
     this.empresa = {} as Empresa
   }
 
   onLogin() {
-    console.log(JSON.stringify('hi'))
     this.authService.login(this.email, this.password)
     this.email = ''
     this.password = ''
   }
-  forgotPassword(){
+  forgotPassword() {
     this.authService.sendPasswordResetEmail(this.email)
-    this.email=''
+    this.email = ''
   }
 }

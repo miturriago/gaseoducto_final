@@ -45,9 +45,9 @@ export class RegisterService {
     return this.empresas
   }
   addEmpresa(empresa: Empresa) {
-    this.empresasCollection.add(empresa)
+    this.db.collection("empresas").add(empresa)
   }
-
+  
   deleteEmpresa(empresa: Empresa) {
     this.empresaDoc = this.db.doc(`empresas/${empresa.id}`)
     this.empresaDoc.delete()
