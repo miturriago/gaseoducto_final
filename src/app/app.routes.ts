@@ -4,6 +4,7 @@ import { IndexComponent } from './components/public/index/index.component';
 import { DefaultComponent } from './components/company/layouts/default/default.component';
 import { DashboardComponent } from './components/company/modules/dashboard/dashboard.component';
 import { PostsComponent } from './components/company/shared/posts/posts.component';
+import { QuestionsComponent } from './components/company/shared/questions/questions.component';
 
 const APP_ROUTE: Routes = [
     { path: 'index', component: IndexComponent },
@@ -17,6 +18,11 @@ const APP_ROUTE: Routes = [
         {
             path:'posts',
             component: PostsComponent
+        },
+        
+        {
+            path:'questions',
+            component: QuestionsComponent,
         }]
     },
     { path: '**', pathMatch: 'full', redirectTo: 'index' }
