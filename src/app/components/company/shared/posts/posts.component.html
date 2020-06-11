@@ -1,52 +1,8 @@
-<div class="row row-cols-1 row-cols-md-3">
-    <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
-            <img height="200px" src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Operador1</h5>
-                <p class="card-text">Lou</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Habilitar</a>
-
-                <a href="#" class="card-link">Editar</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
-            <img height="200px" src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Operador2</h5>
-                <p class="card-text">La mejor</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Habilitar</a>
-
-                <a href="#" class="card-link">Editar</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
-            <img height="200px" src="https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Operador3</h5>
-                <p class="card-text">Del mundo</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Habilitar</a>
-
-                <a href="#" class="card-link">Editar</a>
-            </div>
-        </div>
-    </div>
-</div>
-<br/><br/>
 <div class="mx-auto" style="width: 40%;">
-    <button class="btn btn-primary add" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary add" type="button" data-toggle="collapse" data-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
         Añadir Operador
-      </button>
+    </button>
 </div>
 <div class="collapse mx-auto" id="collapseExample">
     <div class="card card-body mx-auto" style="width: 70%;">
@@ -57,7 +13,8 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Dirección</label>
-                <input type="text" class="form-control" id="inputAddress2" name="direccion" [(ngModel)]="operador.direccion">
+                <input type="text" class="form-control" id="inputAddress2" name="direccion"
+                    [(ngModel)]="operador.direccion">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -66,16 +23,33 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword4" name="password" [(ngModel)]="operador.password">
+                    <input type="password" class="form-control" id="inputPassword4" name="password"
+                        [(ngModel)]="operador.password">
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Imagen de perfil</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                name="imagen" [(ngModel)]="operador.imagen">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagen"
+                    [(ngModel)]="operador.imagen">
             </div>
 
             <button type="submit" class="btn btn-primary float-right" style="width: 150px;">Guardar</button>
         </form>
+    </div>
+</div>
+<br /><br />
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col-sm-4" *ngFor="let cat of cats">
+        <div class="card" style="width: 18rem;">
+            <img height="200px" [src]="cat.data.url" class=" card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{cat.data.nombre}}</h5>
+                <p class="card-text">{{cat.data.email}}</p>
+            </div>
+            <div class="card-body">
+                <a href="#" class="card-link">Habilitar</a>
+            </div>
+        </div>
+
     </div>
 </div>

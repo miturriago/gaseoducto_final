@@ -8,10 +8,12 @@
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Registrarse</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Registrarse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ingresar</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Ingresar</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -21,42 +23,52 @@
                         <div class="row register-form">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="nameRep" placeholder="Nombre representante legal *" [(ngModel)]="empresa.nameRep" />
+                                    <input type="text" class="form-control" name="nameRep"
+                                        placeholder="Nombre representante legal *" [(ngModel)]="empresa.nameRep" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="id" placeholder="Número de documento *" [(ngModel)]="empresa.id" />
+                                    <input type="text" class="form-control" name="id"
+                                        placeholder="Número de documento *" [(ngModel)]="empresa.id" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Contraseña *" [(ngModel)]="empresa.password" />
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Contraseña *" [(ngModel)]="empresa.password" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password1" placeholder="Confirmar Contraseña *" value="" />
+                                    <input type="password" class="form-control" name="password1"
+                                        placeholder="Confirmar Contraseña *" value="" />
                                 </div>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile04" name="image" [(ngModel)]="empresa.image" aria-describedby="inputGroupFileAddon04" />
-                                        <label class="custom-file-label" for="inputGroupFile04">Imagen de la empresa *</label>
+                                        <input type="file" class="custom-file-input" id="inputGroupFile04" name="image"
+                                            (change)="cambioArchivo($event)" accept="image/*" [(ngModel)]="empresa.image"
+                                            aria-describedby="inputGroupFileAddon04" />
+                                        <label class="custom-file-label" for="inputGroupFile04">Imagen de la empresa
+                                            *</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <select class="form-control">
-                    <option class="hidden" selected disabled>Tipo de documento *
-                    </option>
-                    <option>Cédula de ciudadanía </option>
-                    <option>Tarjeta de identidad</option>
-                  </select>
+                                        <option class="hidden" selected disabled>Tipo de documento *
+                                        </option>
+                                        <option>Cédula de ciudadanía </option>
+                                        <option>Tarjeta de identidad</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Correo electrónico *" [(ngModel)]="empresa.email" />
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Correo electrónico *" [(ngModel)]="empresa.email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="name" placeholder="Nombre de la empresa *" [(ngModel)]="empresa.name" />
+                                    <input type="text" class="form-control" name="name"
+                                        placeholder="Nombre de la empresa *" [(ngModel)]="empresa.name" />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Teléfono *" [(ngModel)]="empresa.phone" />
+                                    <input type="text" minlength="10" maxlength="10" name="phone" class="form-control"
+                                        placeholder="Teléfono *" [(ngModel)]="empresa.phone" />
                                 </div>
 
                                 <input type="submit" class="btnRegister" value="Registrarse" />
@@ -71,10 +83,12 @@
                         <div class="row register-form">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="email" placeholder="Correo Electrónico *" [(ngModel)]="email" />
+                                    <input type="text" class="form-control" name="email"
+                                        placeholder="Correo Electrónico *" [(ngModel)]="email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Contraseña *" [(ngModel)]="password" />
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Contraseña *" [(ngModel)]="password" />
                                 </div>
                             </div>
                             <form (ngSubmit)="forgotPassword()">
