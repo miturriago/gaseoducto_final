@@ -28,6 +28,7 @@ export class AuthService {
         up and returns promise */
         this.sendEmailVerification();
         this.SetUserData(result.user, empresa);
+        this.router.navigate(['index']);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -39,6 +40,7 @@ export class AuthService {
         up and returns promise */
         this.sendEmailVerification();
         this.setOperadorData(result.user, operador);
+        this.router.navigate(['company/posts']);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -78,7 +80,7 @@ export class AuthService {
   async sendEmailVerification() {
     await (await this.afAuth.currentUser).sendEmailVerification()
       ;
-    this.router.navigate(['index']);
+
   }
   async sendPasswordResetEmail(passwordResetEmail: string) {
     return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
