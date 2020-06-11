@@ -4,8 +4,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { User } from 'firebase';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Empresa } from '../models/empresa/empresa';
-import { map } from 'rxjs/operators'
-import { Observable } from 'rxjs'
+import { Operador } from '../models/operadores/operador';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +15,7 @@ export class AuthService {
   async login(email: string, password: string) {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+        this.SetUserLogin(result.user);
         this.router.navigate(['company']);
       }).catch((error) => {
         window.alert(error.message)
@@ -30,6 +31,31 @@ export class AuthService {
       }).catch((error) => {
         window.alert(error.message)
       })
+  }
+  async registerOperador(email: string, password: string, operador: Operador) {
+    var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign 
+        up and returns promise */
+        this.sendEmailVerification();
+        this.setOperadorData(result.user, operador);
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+  setOperadorData(user, operador) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`operadores/${user.uid}`);
+    const userData: Operador = {
+      nombre: operador.nombre,
+      direccion: operador.direccion,
+      email: operador.email,
+      password: operador.password,
+      imagen: operador.imagen,
+      empresa: localStorage.getItem('user')
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
   }
   SetUserData(user, empresa) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`empresas/${user.uid}`);
@@ -47,19 +73,7 @@ export class AuthService {
     })
   }
   SetUserLogin(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`empresas/${user.uid}`);
-    const userData: Empresa = {
-      email: user.email,
-      id: user.id,
-      name: user.name,
-      password: user.password,
-      image: user.image,
-      phone: user.phone,
-      nameRep: user.nameRep
-    }
-    return userRef.set(userData, {
-      merge: true
-    })
+    localStorage.setItem('user', user.uid);
   }
   async sendEmailVerification() {
     await (await this.afAuth.currentUser).sendEmailVerification()
@@ -80,15 +94,7 @@ export class AuthService {
     return user !== null;
   }
   constructor(public afAuth: AngularFireAuth, public router: Router, public afs: AngularFirestore, ) {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user.uid));
-        console.log('Datos ', localStorage.getItem('user'))
-      } else {
-        localStorage.setItem('user', null);
-      }
-    })
+
 
   }
 

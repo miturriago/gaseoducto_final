@@ -14,6 +14,8 @@ import { Router, RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { AreaComponent } from './widgets/area/area.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { FormsModule } from '@angular/forms'
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -34,6 +36,7 @@ import { QuestionsComponent } from './questions/questions.component';
     MatListModule,
     RouterModule,
     HighchartsChartModule,
+    FormsModule,
   ], exports: [
     HeaderComponent,
     FooterComponent,

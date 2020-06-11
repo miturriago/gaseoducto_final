@@ -7,6 +7,8 @@ import { PostsComponent } from '../../shared/posts/posts.component';
 import { SharedModule } from '../../shared/shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterModule,
     SharedModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule,
   ]
 })
 export class DefaultModule { }
