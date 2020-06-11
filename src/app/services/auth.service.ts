@@ -41,7 +41,7 @@ export class AuthService {
         up and returns promise */
         this.sendEmailVerification();
         this.setOperadorData(result.user, operador);
-        this.router.navigate(['company/posts']);
+        this.router.navigate(['company/pots']);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -58,6 +58,7 @@ export class AuthService {
     }
     return userRef.set(userData, {
       merge: true
+      
     })
   }
   SetUserData(user, empresa) {
