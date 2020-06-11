@@ -182,6 +182,20 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['index']);
   }
+  getData() {
+    var docRef = this.afs.collection("cities").doc(localStorage.getItem('user'));
+
+    docRef.get().toPromise().then(function (doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch(function (error) {
+      console.log("Error getting document:", error);
+    });
+  }
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
