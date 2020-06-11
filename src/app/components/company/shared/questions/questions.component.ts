@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms'
+import { AuthService } from 'src/app/services/auth.service'
+import { Pregunta } from 'src/app/models/preguntas/pregunta'
 
 @Component({
   selector: 'app-questions',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
-
-  constructor() { }
+  pregunta = {} as Pregunta
+  question: {
+  };
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+  addQuestion(questionForm: NgForm) {  
+    this.authService.setQuestion(questionForm.value)
+    this.pregunta = {} as Pregunta
   }
 
 }
