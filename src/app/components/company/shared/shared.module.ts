@@ -15,6 +15,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { AreaComponent } from './widgets/area/area.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { FormsModule } from '@angular/forms'
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms'
     SidebarComponent,
     AreaComponent,
     QuestionsComponent
-    
+
   ],
   imports: [
     CommonModule,
@@ -37,12 +38,14 @@ import { FormsModule } from '@angular/forms'
     RouterModule,
     HighchartsChartModule,
     FormsModule,
+    AngularFireStorageModule
   ], exports: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
     AreaComponent
-    
-  ]
+
+  ], providers: [{ provide: BUCKET, useValue: 'angular-firebase-blog-c0906.appspot.com' }],
+
 })
 export class SharedModule { }

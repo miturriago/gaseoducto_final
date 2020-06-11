@@ -2,7 +2,7 @@ export interface Empresa {
   id?: string
   name?: string
   password?: string
-  image?: File
+  image?: string
   typeID?: string
   email?: string
   phone?: number

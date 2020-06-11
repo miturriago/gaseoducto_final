@@ -12,6 +12,7 @@ import { APP_ROUTING } from './app.routes'
 import { IndexComponent } from './components/public/index/index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './components/company/layouts/default/default.module';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -24,9 +25,10 @@ import { DefaultModule } from './components/company/layouts/default/default.modu
     AngularFirestoreModule,
     FormsModule,
     BrowserAnimationsModule,
-    DefaultModule
+    DefaultModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [{ provide: BUCKET, useValue: 'angular-firebase-blog-c0906.appspot.com' }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

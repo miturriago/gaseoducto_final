@@ -6,11 +6,14 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Empresa } from '../models/empresa/empresa';
 import { Operador } from '../models/operadores/operador';
 import { Pregunta } from '../models/preguntas/pregunta';
+import { AngularFireStorage } from "@angular/fire/storage";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  downloadURL: Observable<string>;
   user: User;
   userData: any; // Save logged in user data
   async login(email: string, password: string) {
@@ -22,13 +25,14 @@ export class AuthService {
         window.alert(error.message)
       })
   }
-  async register(email: string, password: string, empresa: Empresa) {
+  async register(email: string, password: string, empresa: Empresa, uploadImg) {
     var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
+        console.log("imagen", uploadImg)
         this.sendEmailVerification();
-        this.SetUserData(result.user, empresa);
+        this.SetUserData(result.user, empresa, uploadImg);
         this.router.navigate(['index']);
       }).catch((error) => {
         window.alert(error.message)
@@ -58,17 +62,17 @@ export class AuthService {
     }
     return userRef.set(userData, {
       merge: true
-      
+
     })
   }
-  SetUserData(user, empresa) {
+  SetUserData(user, empresa, uploadImg) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`empresas/${user.uid}`);
     const userData: Empresa = {
       email: empresa.email,
       id: empresa.id,
       name: empresa.name,
       password: empresa.password,
-      image: empresa.image,
+      image: uploadImg,
       phone: empresa.phone,
       nameRep: empresa.nameRep
     }
@@ -203,7 +207,7 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
   }
-  constructor(public afAuth: AngularFireAuth, public router: Router, public afs: AngularFirestore, ) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, public afs: AngularFirestore, public storage: AngularFireStorage) {
 
 
   }
