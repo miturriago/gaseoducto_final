@@ -17,7 +17,7 @@ export class AuthService {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserLogin(result.user);
-        this.router.navigate(['company']);
+
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -168,6 +168,7 @@ export class AuthService {
   }
   SetUserLogin(user) {
     localStorage.setItem('user', user.uid);
+    this.router.navigate(['company']);
   }
   async sendEmailVerification() {
     await (await this.afAuth.currentUser).sendEmailVerification()

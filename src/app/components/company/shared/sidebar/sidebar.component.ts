@@ -12,6 +12,7 @@ import { Empresa } from '../../../../models/empresa/empresa';
 export class SidebarComponent implements OnInit {
   email: string;
   nombre: string;
+  cont: number;
 
   constructor(
     private firestore: AngularFirestore,
@@ -21,11 +22,24 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cont = 0;
+    this.getOperadores();
 
     this.getCompany();
-    this.nombre=localStorage.getItem('nombre');
-    this.email=localStorage.getItem('email');
+    this.nombre = localStorage.getItem('nombre');
+    this.email = localStorage.getItem('email');
 
+  }
+  getOperadores() {
+    this.afs.collection("operadores").get().toPromise().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().empresa == localStorage.getItem('user')) {
+          console.log(`${doc.id} => ${doc.data().nombre}`);
+          this.cont = this.cont + 1;
+        }
+      }
+      );
+    });
   }
   getCompany() {
     var docRef = this.afs.collection("empresas").doc(localStorage.getItem('user'));
